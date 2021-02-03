@@ -1,0 +1,10 @@
+[package]
+name = "rust-web-view-demo"
+version = "0.1.0"
+authors = ["yuya <yuyas203@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+web-view = { version = "0.7", features = ["edge"] }
