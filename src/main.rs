@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+use serde_json;
 use web_view::*;
 
 fn main() {
@@ -26,9 +28,23 @@ fn main() {
         .resizable(true)
         .debug(true)
         .user_data(())
-        .invoke_handler(|_webview, _arg| Ok(()))
+        .invoke_handler(|webview, arg| {
+            use Cmd::*;
+            match serde_json::from_str(arg).unwrap() {
+                Init => println!("Initialize app."),
+                Log { text } => println!("{}", text),
+            }
+            Ok(())
+        })
         .run()
         .unwrap();
+}
+
+#[derive(Deserialize)]
+#[serde(tag = "cmd", rename_all = "camelCase")]
+pub enum Cmd {
+    Init,
+    Log { text: String },
 }
 
 fn inline_style(s: &str) -> String {
