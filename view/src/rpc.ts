@@ -10,8 +10,11 @@ type Log = {
 type Cmd = Init | Log;
 
 const invoke = <T extends Cmd>(cmd: T) => {
-  //@ts-ignore
-  window.external.invoke(JSON.stringify(cmd));
+  try {
+    window.external["invoke"](JSON.stringify(cmd));
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const init = () => {
