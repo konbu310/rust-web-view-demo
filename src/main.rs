@@ -14,8 +14,9 @@ fn main() {
 			</body>
 		</html>
 		"#,
-        styles = inline_style(include_str!("js-src/static/style.css")),
-        scripts = inline_script(include_str!("js-src/dist/index.js"))
+        styles = inline_style(include_str!("../view/public/global.css"))
+            + &inline_style(include_str!("../view/public/build/bundle.css")),
+        scripts = inline_script(include_str!("../view/public/build/bundle.js"))
     );
 
     builder()
