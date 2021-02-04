@@ -6,10 +6,10 @@
 
 #### Debug
 ```shell
-# js-src
+# view directory
 yarn && yarn run build
 
-# root
+# root directory
 cargo run
 ```
 
